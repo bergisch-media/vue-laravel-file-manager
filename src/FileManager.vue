@@ -1,10 +1,10 @@
 <template>
   <div class="fm d-flex flex-column"
        v-bind:class="{ 'fm-full-screen': fullScreen }">
-    <navbar></navbar>
+    <component :is="navBar"></component>
     <div class="fm-body">
       <notification></notification>
-      <context-menu></context-menu>
+      <context-menu v-if="useContextMenu"></context-menu>
       <modal v-if="showModal"></modal>
       <template v-if="windowsConfig === 1">
         <left-manager class="col" manager="left"></left-manager>
@@ -109,7 +109,14 @@ export default {
       activeManager: state => state.settings.activeManager,
       showModal: state => state.modal.showModal,
       fullScreen: state => state.settings.fullScreen,
+      useContextMenu: state => state.settings.useContextMenu,
     }),
+    /**
+     * Get default or custom nav bar
+     */
+    navBar() {
+      return this.$store.state.fm.settings.customNavBar ? this.$store.state.fm.settings.customNavBar : Navbar;
+    },
   },
   methods: {
     /**

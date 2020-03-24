@@ -187,6 +187,23 @@ export default {
         yaml: 'text/x-yaml',
         json: 'application/json',
       },
+
+      useContextMenu: true,
+
+      // hidden buttons via settings (left,right manager)
+      hiddenButtons: {
+        left: [],
+        right: [],
+      },
+
+      fileFilterFunction: null,
+
+      deleteCallback: null,
+
+      customTableView: null,
+
+      customNavBar: null,
+
     };
   },
   mutations,

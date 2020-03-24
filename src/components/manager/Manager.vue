@@ -3,7 +3,7 @@
         <disk-list v-bind:manager="manager"></disk-list>
         <breadcrumb v-bind:manager="manager"></breadcrumb>
         <div class="fm-content-body">
-            <table-view v-if="viewType === 'table'" v-bind:manager="manager"></table-view>
+            <component :is="tableView" v-if="viewType === 'table'" v-bind:manager="manager"></component>
             <grid-view v-else v-bind:manager="manager"></grid-view>
         </div>
     </div>
@@ -34,6 +34,12 @@ export default {
      */
     viewType() {
       return this.$store.state.fm[this.manager].viewType;
+    },
+    /**
+     * Return default or custom table view
+     */
+    tableView() {
+      return this.$store.state.fm.settings.customTableView ? this.$store.state.fm.settings.customTableView : TableView;
     },
   },
 };

@@ -6,6 +6,9 @@ export default {
    * @param rootState
    */
   files(state, getters, rootState) {
+    if (rootState.fm.settings.fileFilterFunction) {
+      return rootState.fm.settings.fileFilterFunction(state.files);
+    }
     if (rootState.fm.settings.hiddenFiles) {
       return state.files;
     }

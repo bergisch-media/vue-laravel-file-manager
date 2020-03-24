@@ -283,7 +283,7 @@ export default {
    * @param items
    * @returns {*|PromiseLike<T | never>|Promise<T | never>}
    */
-  delete({ state, getters, dispatch }, items) {
+  delete({ state, getters, dispatch, rootState }, items) {
     return POST.delete({
       disk: getters.selectedDisk,
       items,
@@ -292,7 +292,9 @@ export default {
       if (response.data.result.status === 'success') {
         // refresh content
         dispatch('refreshManagers');
-
+        if (rootState.fm.settings.deleteCallback) {
+          rootState.fm.settings.deleteCallback()
+        }
         // delete directories from tree
         if (state.settings.windowsConfig === 2) {
           const onlyDir = items.filter(item => item.type === 'dir');
