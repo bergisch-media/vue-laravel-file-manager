@@ -202,6 +202,8 @@ export default {
 
       customTableView: null,
 
+      customGridView: null,
+
       customNavBar: null,
 
     };

@@ -42,6 +42,10 @@ export default {
     if (Object.prototype.hasOwnProperty.call(data, 'customTableView')) {
       state.customTableView = data.customTableView
     }
+    // custom grid view
+    if (Object.prototype.hasOwnProperty.call(data, 'customGridView')) {
+      state.customGridView = data.customGridView
+    }
     // custom navbar
     if (Object.prototype.hasOwnProperty.call(data, 'customNavBar')) {
       state.customNavBar = data.customNavBar

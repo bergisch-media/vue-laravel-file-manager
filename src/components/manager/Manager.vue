@@ -4,7 +4,7 @@
         <breadcrumb v-bind:manager="manager"></breadcrumb>
         <div class="fm-content-body">
             <component :is="tableView" v-if="viewType === 'table'" v-bind:manager="manager"></component>
-            <grid-view v-else v-bind:manager="manager"></grid-view>
+            <component :is="gridView" v-else v-bind:manager="manager"></component>
         </div>
     </div>
 </template>
@@ -36,11 +36,17 @@ export default {
       return this.$store.state.fm[this.manager].viewType;
     },
     /**
-     * Return default or custom table view
+     * Return default or custom grid view component
      */
     tableView() {
       return this.$store.state.fm.settings.customTableView ? this.$store.state.fm.settings.customTableView : TableView;
     },
+    /**
+     * Return default or custom grid view component
+     */
+    gridView() {
+      return this.$store.state.fm.settings.customGridView ? this.$store.state.fm.settings.customGridView : customGridView;
+    }
   },
 };
 </script>
